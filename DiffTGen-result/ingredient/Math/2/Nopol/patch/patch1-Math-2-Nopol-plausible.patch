@@ -1,0 +1,15 @@
+--- /src/main/java/org/apache/commons/math3/distribution/AbstractIntegerDistribution.java
++++ /src/main/java/org/apache/commons/math3/distribution/AbstractIntegerDistribution.java
+@@ -134,10 +134,12 @@
+             }
+             k = 1.0 / k;
+             tmp = mu + k * sigma;
++            if (sigma == lower) {
+             if (tmp < upper) {
+                 upper = ((int) Math.ceil(tmp)) - 1;
+             }
+         }
++        }
+ 
+         return solveInverseCumulativeProbability(p, lower, upper);
+     }

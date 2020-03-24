@@ -1,0 +1,12 @@
+--- /src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ /src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -701,7 +701,9 @@
+                     .scalarMultiply(ccov1); // rank one update
+             // minor correction if hsig==false
+             double oldFac = hsig ? 0 : ccov1 * cc * (2. - cc);
++            if (org.apache.commons.math3.optimization.direct.CMAESOptimizer.this.inputSigma!=null) {
+             oldFac += 1. - ccov1 - ccovmu;
++            }
+             if (isActiveCMA) {
+                 // Adapt covariance matrix C active CMA
+                 negccov = (1. - ccovmu) * 0.25 * mueff /
