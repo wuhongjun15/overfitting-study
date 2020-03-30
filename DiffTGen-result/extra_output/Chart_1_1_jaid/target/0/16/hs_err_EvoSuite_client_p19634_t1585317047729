@@ -1,0 +1,112 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65536 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2640), pid=23257, tid=0x00007f0d99ce4700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_181-b13) (build 1.8.0_181-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.181-b13 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f0db00b7800):  JavaThread "C2 CompilerThread0" daemon [_thread_in_vm, id=23351, stack(0x00007f0d99be4000,0x00007f0d99ce5000)]
+
+Stack: [0x00007f0d99be4000,0x00007f0d99ce5000],  sp=0x00007f0d99ce01d0,  free space=1008k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xad21aa]  VMError::report_and_die()+0x2ba
+V  [libjvm.so+0x5022db]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0x8b
+V  [libjvm.so+0x92fe33]  os::Linux::commit_memory_impl(char*, unsigned long, bool)+0x123
+V  [libjvm.so+0x930059]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0x29
+V  [libjvm.so+0x9272ba]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2a
+V  [libjvm.so+0xacde89]  VirtualSpace::expand_by(unsigned long, bool)+0x199
+V  [libjvm.so+0x621ffc]  CodeHeap::expand_by(unsigned long)+0x8c
+V  [libjvm.so+0x4860c0]  CodeCache::allocate(int, bool)+0x60
+V  [libjvm.so+0x4814b5]  BufferBlob::create(char const*, int)+0x95
+V  [libjvm.so+0x484dca]  CodeBuffer::initialize(int, int)+0x1a
+V  [libjvm.so+0x940048]  Compile::init_buffer(unsigned int*)+0x208
+V  [libjvm.so+0x945e61]  Compile::Output()+0x381
+V  [libjvm.so+0x4a8d1b]  Compile::Code_Gen()+0x31b
+V  [libjvm.so+0x4ab4e1]  Compile::Compile(ciEnv*, C2Compiler*, ciMethod*, int, bool, bool, bool)+0x14b1
+V  [libjvm.so+0x3f6775]  C2Compiler::compile_method(ciEnv*, ciMethod*, int)+0x1f5
+V  [libjvm.so+0x4b5a5a]  CompileBroker::invoke_compiler_on_method(CompileTask*)+0xcba
+V  [libjvm.so+0x4b6a06]  CompileBroker::compiler_thread_loop()+0x5d6
+V  [libjvm.so+0xa813f3]  JavaThread::thread_main_inner()+0x103
+V  [libjvm.so+0xa8153c]  JavaThread::run()+0x11c
+V  [libjvm.so+0x930198]  java_start(Thread*)+0x108
+C  [libpthread.so.0+0x76ba]  start_thread+0xca
+
+
+Current CompileTask:
+C2: 106798 5198       4       org.evosuite.shaded.org.objectweb.asm.ClassReader::readCode (3575 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f0d80314800 JavaThread "Image Fetcher 2" daemon [_thread_blocked, id=23600, stack(0x00007f0d5ab79000,0x00007f0d5ac7a000)]
+  0x00007f0d80312800 JavaThread "Image Fetcher 1" daemon [_thread_blocked, id=23599, stack(0x00007f0d5ac7a000,0x00007f0d5ad7b000)]
+  0x00007f0d78f60800 JavaThread "Thread-3" [_thread_in_native, id=23574, stack(0x00007f0d680dd000,0x00007f0d681de000)]
+  0x00007f0d78346800 JavaThread "TEST_EXECUTION_THREAD_0" [_thread_blocked, id=23545, stack(0x00007f0d980d9000,0x00007f0d981da000)]
+  0x00007f0db0292800 JavaThread "Statistics sender in client process" [_thread_blocked, id=23484, stack(0x00007f0d986ac000,0x00007f0d987ad000)]
+  0x00007f0d70018800 JavaThread "pool-3-thread-1" [_thread_blocked, id=23483, stack(0x00007f0d987ad000,0x00007f0d988ae000)]
+  0x00007f0db0290000 JavaThread "RMI RenewClean-[127.0.0.1:9114]" daemon [_thread_blocked, id=23475, stack(0x00007f0d988ae000,0x00007f0d989af000)]
+  0x0000000001ffa800 JavaThread "RMI TCP Connection(1)-127.0.0.1" daemon [_thread_blocked, id=23468, stack(0x00007f0d989cb000,0x00007f0d98acc000)]
+  0x00007f0db028e000 JavaThread "RMI Scheduler(0)" daemon [_thread_blocked, id=23464, stack(0x00007f0d98acc000,0x00007f0d98bcd000)]
+  0x00007f0db0289800 JavaThread "GC Daemon" daemon [_thread_blocked, id=23458, stack(0x00007f0d98bcd000,0x00007f0d98cce000)]
+  0x00007f0db0287000 JavaThread "RMI Reaper" [_thread_blocked, id=23456, stack(0x00007f0d98cce000,0x00007f0d98dcf000)]
+  0x00007f0db0241800 JavaThread "RMI TCP Accept-8107" daemon [_thread_in_native, id=23453, stack(0x00007f0d98fcf000,0x00007f0d990d0000)]
+  0x00007f0db01e2000 JavaThread "logback-3" daemon [_thread_blocked, id=23416, stack(0x00007f0d99149000,0x00007f0d9924a000)]
+  0x00007f0db01e0800 JavaThread "logback-2" daemon [_thread_blocked, id=23414, stack(0x00007f0d9924a000,0x00007f0d9934b000)]
+  0x00007f0db01df000 JavaThread "logback-1" daemon [_thread_blocked, id=23412, stack(0x00007f0d9934b000,0x00007f0d9944c000)]
+  0x00007f0db00bd800 JavaThread "Service Thread" daemon [_thread_blocked, id=23361, stack(0x00007f0d999e2000,0x00007f0d99ae3000)]
+  0x00007f0db00ba800 JavaThread "C1 CompilerThread1" daemon [_thread_blocked, id=23357, stack(0x00007f0d99ae3000,0x00007f0d99be4000)]
+=>0x00007f0db00b7800 JavaThread "C2 CompilerThread0" daemon [_thread_in_vm, id=23351, stack(0x00007f0d99be4000,0x00007f0d99ce5000)]
+  0x00007f0db00b5800 JavaThread "Attach Listener" daemon [_thread_blocked, id=23339, stack(0x00007f0d99ce5000,0x00007f0d99de6000)]
+  0x00007f0db00b4800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=23336, stack(0x00007f0d99de6000,0x00007f0d99ee7000)]
+  0x00007f0db0081800 JavaThread "Finalizer" daemon [_thread_blocked, id=23310, stack(0x00007f0d9a8a6000,0x00007f0d9a9a7000)]
+  0x00007f0db007f000 JavaThread "Reference Handler" daemon [_thread_blocked, id=23295, stack(0x00007f0d9a9a7000,0x00007f0d9aaa8000)]
+  0x00007f0db000b000 JavaThread "main" [_thread_blocked, id=23262, stack(0x00007f0db6cac000,0x00007f0db6dad000)]
+
+Other Threads:
+  0x00007f0db0075000 VMThread [stack: 0x00007f0d9aaa8000,0x00007f0d9aba9000] [id=23294]
+  0x00007f0db00c2800 WatcherThread [stack: 0x00007f0d998e1000,0x00007f0d999e2000] [id=23366]
+
+VM state:synchronizing (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f0db0006c00] CodeCache_lock - owner thread: 0x00007f0db00b7800
+[0x00007f0db0007880] Threads_lock - owner thread: 0x00007f0db0075000
+
+Heap:
+ PSYoungGen      total 608256K, used 293638K [0x00000000d6900000, 0x0000000100000000, 0x0000000100000000)
+  eden space 572416K, 45% used [0x00000000d6900000,0x00000000e64c71a0,0x00000000f9800000)
+  from space 35840K, 99% used [0x00000000fdd00000,0x00000000ffffa840,0x0000000100000000)
+  to   space 53248K, 0% used [0x00000000f9800000,0x00000000f9800000,0x00000000fcc00000)
+ ParOldGen       total 186368K, used 133877K [0x0000000083a00000, 0x000000008f000000, 0x00000000d6900000)
+  object space 186368K, 71% used [0x0000000083a00000,0x000000008bcbd690,0x000000008f000000)
+ Metaspace       used 41394K, capacity 42314K, committed 42496K, reserved 1085440K
+  class space    used 5359K, capacity 5602K, committed 5632K, reserved 1048576K
+
+Card table byte_map: [0x00007f0da0640000,0x00007f0da0a24000] byte_map_base: 0x00007f0da0223000
+
+Marking Bits: (ParMarkBitMap*) 0x00007f0db61770a0
+ Begin Bits: [0x00007f0d9c376000, 0x00007f0d9e28e000)
+ End Bits:   [0x00007f0d9e28e000, 0x00007f0da01a6000)
+
+Polling page: 0x00007f0db6dc9000
+
